@@ -11,6 +11,6 @@
 
 .left{
     height: 100%;
-    width: calc(100% - 200px);
+    flex-grow: 1;
     background-color: aqua;
 }

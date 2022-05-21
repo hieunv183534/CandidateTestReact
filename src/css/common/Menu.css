@@ -26,6 +26,11 @@
     align-items: center;
     padding-left: 10px;
     color: #eee;
+    border-radius: 4px;
+}
+
+.menu-option.active{
+    background-color: #469DA2 !important;
 }
 
 .menu-option i{
