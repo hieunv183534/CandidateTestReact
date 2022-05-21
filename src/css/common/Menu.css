@@ -1,0 +1,37 @@
+.menu{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #393A3D;
+}
+
+.menu-header{
+    background-image: url('../../assets/img/logo.webp');
+    width: 100%;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+.menu-option{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    align-items: center;
+    padding-left: 10px;
+    color: #eee;
+}
+
+.menu-option i{
+    margin-right: 10px;
+}
+
+.menu-option:hover{
+    background-color: #5D5D61;
+}
