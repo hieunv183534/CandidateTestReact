@@ -1,0 +1,36 @@
+button{
+    outline: none;
+    border: none;
+}
+
+.button{
+    height: 36px;
+    min-width: 100px;
+    width: auto;
+    border-radius: 4px;
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+.button p{
+    line-height: 36px;
+}
+
+.btn-primary{
+    background-color: #EC5504;
+    color: #eee;
+}
+
+.btn-primary:hover{
+    background-color: #FA6000;
+}
+
+.btn-secondary{
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #888;
+}
+
+.btn-secondary:hover{
+    background-color: #EFF1F6;
+}
