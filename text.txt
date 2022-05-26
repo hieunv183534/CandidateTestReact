@@ -19,3 +19,5 @@ app: -login
  chia làm commom component :
  - Giang: form, question, popup
  - Mạnh: table, toastMessenger , loader
+
+ - ô bằng đọc: httpmethod , truyền qua body, qua query, qua path
