@@ -2,9 +2,7 @@ import React from "react";
 import Menu from './common/Menu';
 import Header from './common/Header';
 import '../css/layout/AdminPage.css';
-import {
-    Outlet
-  } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 function AdminPage(){
     return( 
@@ -13,7 +11,7 @@ function AdminPage(){
                 <Menu/>
             </div>
             <div className="left">
-                <Header/>
+                <Header userName={"Nguyễn Văn Hiếu"}/>
                 <Outlet />
             </div>
         </div> 

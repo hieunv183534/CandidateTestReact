@@ -5,7 +5,7 @@ function LoginPage(){
     const navigate = useNavigate();
 
     const toAdminPage = () =>{
-        navigate("/admin");
+        navigate("/admin/");
     };
 
     return( 
