@@ -1,8 +1,11 @@
 import React from "react";
+import Table from "../common/Table"
 
 function AccountsContent(){
-    return( <div>
-            <h2>Trang account home</h2>
+
+
+    return( <div >
+        <Table />
     </div> );
 }
 
