@@ -18,7 +18,9 @@ class AccountApi extends BaseApi {
     getListAccount(index,count,searchTerms,role ){
         return BaseApiConfig.get(`${this.apiController}?index=${index}&count=${count}&searchTerms=${searchTerms}&role=${role}`);
     }
-
+    deleteAccout(id){
+        return BaseApiConfig.delete(`${this.apiController}?id=${id} `);
+    }
 
 }
 
