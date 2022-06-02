@@ -1,6 +1,6 @@
 import React from 'react';
 import 'devextreme/dist/css/dx.light.css';
-import MOCK_DATA from '../MOCK_DATA.json';
+import MOCK_DATAquestion from '../MOCK_DATA question.json';
 import {
     DataGrid,
     FilterRow,
@@ -12,11 +12,11 @@ import {
 import '../../css/common/Table.css'
 
  
-function Table() {
+function TableQuestion() {
     return (
         <div>
             <DataGrid id="dataGrid" 
-            dataSource={MOCK_DATA}
+            dataSource={MOCK_DATAquestion}
                 keyExpr="id">
                 <FilterRow visible={true} />
                 <SearchPanel visible={true} />
@@ -24,22 +24,13 @@ function Table() {
                 <Column dataField="id">
                     <RequiredRule />
                 </Column>
-                <Column dataField="Name">
+                <Column dataField="type">
                     <RequiredRule />
                 </Column>
-                <Column dataField="Address">
+                <Column dataField="contentText">
                     <RequiredRule />
                 </Column>
-                <Column dataField="email">
-                    <RequiredRule />
-                </Column>
-                <Column dataField="gender">
-                    <RequiredRule />
-                </Column>
-                <Column dataField="phone">
-                    <RequiredRule />
-                </Column>
-                <Column dataField="DateOfBirth">
+                <Column dataField="category">
                     <RequiredRule />
                 </Column>
                 <Editing
@@ -53,4 +44,4 @@ function Table() {
     );
 }
  
-export default Table;
+export default TableQuestion;

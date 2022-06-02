@@ -1,5 +1,7 @@
 import React , {useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginForm from "./common/LoginForm";
+
 
 function LoginPage(){
     const navigate = useNavigate();
@@ -7,11 +9,11 @@ function LoginPage(){
     const toAdminPage = () =>{
         navigate("/admin/");
     };
-
+  
     return( 
-            <div>Hello world!
-
-                <button onClick={toAdminPage}>To Admin page</button>
+            <div>
+                <LoginForm />
+                <button onClick={toAdminPage} >To Admin page</button>
             </div>
     );
 }

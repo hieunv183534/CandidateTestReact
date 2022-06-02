@@ -1,9 +1,10 @@
 import React from "react";
+import TableQuestion from "../common/TableQuestion";
 
 function QuestionsContent(){
     return( <div>
-        <h2>Trang question home</h2>
-    </div> );
+        <TableQuestion />
+        </div> );
 }
 
 export default QuestionsContent;
