@@ -11,12 +11,11 @@ class AccountApi extends BaseApi {
         return BaseApiConfig.post(`${this.apiController}/login`, {username,password});
     }
 
-    signup(account){
-        return BaseApiConfig.post(`${this.apiController}/signup`, account);
-    }
-
     getListAccount(index,count,searchTerms,role ){
-        return BaseApiConfig.get(`${this.apiController}?index=${index}&count=${count}&searchTerms=${searchTerms}&role=${role}`);
+        return BaseApiConfig.get(`${this.apiController}?index=${index}&count=${count}&searchTerms=${searchTerms}&role=${role}`,{headers: {
+            "Content-Type": "application/json",
+            Authorization: sessionStorage.getItem("token"),
+        }});
     }
     deleteAccout(id){
         return BaseApiConfig.delete(`${this.apiController}?id=${id} `);
