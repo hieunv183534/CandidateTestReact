@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Table from "../common/Table";
+import Form from "../common/Form";
 import "../../css/common/Table.css";
 import AccountApi from "../../api/entities/AccountApi.js";
 import "../../css/layout/AccountContent.css";
-import { Form } from "devextreme-react/form";
 import { Popup } from "devextreme-react/popup";
-import ScrollView from "devextreme-react/scroll-view";
-import Button from "../common/Button.js";
+
+
+const renderContent = () =>  {
+  return (
+    <>
+      <Form />
+    </>
+  )}
+
 
 function AccountsContent() {
   const [accounts, setAccounts] = useState([]);
@@ -32,11 +39,11 @@ function AccountsContent() {
     "role",
   ];
 
-  const employee = {
-    name: "John Heart",
-    officeNumber: 901,
-    hireDate: new Date(2012, 4, 13),
-  };
+  // const employee = {
+  //   name: "John Heart",
+  //   officeNumber: 901,
+  //   hireDate: new Date(2012, 4, 13),
+  // };
 
   const [isPopupVisible, setPopupVisibility] = useState(false);
 
@@ -63,12 +70,13 @@ function AccountsContent() {
         closeOnOutsideClick={true}
         onHiding={togglePopup}
         showTitle={true}
-        title={"aloxxo"}
+        title={"Thêm tài khoản"}
         width={500}
         height={500}
         resizeEnabled={true}
-        contentRender={<> <Form formData={employee} /> </> }
-      />
+        contentRender={renderContent}
+         />
+      
     </div>
   );
 }
