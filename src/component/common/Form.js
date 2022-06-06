@@ -30,8 +30,10 @@ const Form = () => {
         <form  onSubmit={handleSubmit}>
           {formValues.map((element, index) => (
             <div className="form-inline" key={index}>
+              <label>ID</label>
+              <input type="text" name="id" value={element.name || ""} onChange={e => handleChange(index, e)} />
               <label>Name</label>
-              <input type="text" name="name" value={element.name || ""} onChange={e => handleChange(index, e)} />
+              <input type="text" name="fullName" value={element.email || ""} onChange={e => handleChange(index, e)} />
               <label>Email</label>
               <input type="text" name="email" value={element.email || ""} onChange={e => handleChange(index, e)} />
               {

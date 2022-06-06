@@ -1,16 +1,18 @@
 .form-inline {  
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     align-items: center;
   }
 
   .form-inline label {
     margin: 5px 10px 5px 0;
-  }
 
+  }
+ 
   .form-inline input {
     vertical-align: middle;
-    margin: 5px 10px 5px 0;
+    margin: 10px;
+    margin-right: 20px;
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -36,4 +38,8 @@
   }
   .remove:hover {
     background-color: rgb(187, 43, 43);
+  }
+
+  dx-popub-normal {
+    width: 1000px !important;
   }
