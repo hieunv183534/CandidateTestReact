@@ -1,54 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react';
+import {useState} from "react";
 import '../../css/common/Form.css'
+function Form() {
+  const [inputs, setInputs] = useState({});
 
-const Form = () => {
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
 
-    const [formValues, setFormValues] = useState([{ name: "", email : ""}])
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(inputs);
+  }
 
-    let handleChange = (i, e) => {
-        let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues);
-      }
-    
-    let addFormFields = () => {
-        setFormValues([...formValues, { name: "", email: "" }])
-      }
-    
-    let removeFormFields = (i) => {
-        let newFormValues = [...formValues];
-        newFormValues.splice(i, 1);
-        setFormValues(newFormValues)
-    }
-    
-    let handleSubmit = (event) => {
-        event.preventDefault();
-        alert(JSON.stringify(formValues));
-    }
-
-    return (
-        <form  onSubmit={handleSubmit}>
-          {formValues.map((element, index) => (
-            <div className="form-inline" key={index}>
-              <label>ID</label>
-              <input type="text" name="id" value={element.name || ""} onChange={e => handleChange(index, e)} />
-              <label>Name</label>
-              <input type="text" name="fullName" value={element.email || ""} onChange={e => handleChange(index, e)} />
-              <label>Email</label>
-              <input type="text" name="email" value={element.email || ""} onChange={e => handleChange(index, e)} />
-              {
-                index ? 
-                  <button type="button"  className="button remove" onClick={() => removeFormFields(index)}>Remove</button> 
-                : null
-              }
-            </div>
-          ))}
-          <div className="button-section">
-              <button className="button add" type="button" onClick={() => addFormFields()}>Add</button>
-              <button className="button submit" type="submit">Submit</button>
-          </div>
-      </form>
-    )
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>Enter your name:
+      <input 
+        type="text" 
+        name="username" 
+        value={inputs.username || ""} 
+        onChange={handleChange}
+      />
+      </label>
+      <label>Enter your age:
+        <input 
+          type="number" 
+          name="age" 
+          value={inputs.age || ""} 
+          onChange={handleChange}
+        />
+        </label>
+        <input type="submit" />
+    </form>
+  )
 }
 
 export default Form;

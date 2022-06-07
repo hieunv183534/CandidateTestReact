@@ -9,9 +9,9 @@ import { Popup } from "devextreme-react/popup";
 
 const renderContent = () =>  {
   return (
-    <>
+    <div>
       <Form />
-    </>
+    </div>
   )}
 
 
