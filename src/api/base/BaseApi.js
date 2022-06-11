@@ -11,7 +11,10 @@ export default class BaseApi {
      * @returns 
      */
     add(body) {
-        return BaseApiConfig.post(`${this.apiController}`, body);
+        return BaseApiConfig.post(`${this.apiController}`, body,{headers: {
+            "Content-Type": "application/json",
+            Authorization: sessionStorage.getItem("token"),
+        }});
     }
 
     /**

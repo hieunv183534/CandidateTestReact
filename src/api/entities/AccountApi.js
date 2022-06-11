@@ -11,6 +11,13 @@ class AccountApi extends BaseApi {
         return BaseApiConfig.post(`${this.apiController}/login`, {username,password});
     }
 
+    addAccount(account){
+        return BaseApiConfig.post(`${this.apiController}`, account,{headers: {
+            "Content-Type": "application/json",
+            Authorization: sessionStorage.getItem("token"),
+        }});
+    }
+
     getListAccount(index,count,searchTerms,role ){
         return BaseApiConfig.get(`${this.apiController}?index=${index}&count=${count}&searchTerms=${searchTerms}&role=${role}`,{headers: {
             "Content-Type": "application/json",

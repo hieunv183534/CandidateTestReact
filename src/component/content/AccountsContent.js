@@ -9,10 +9,8 @@ import { Popup } from "devextreme-react/popup";
 
 const renderContent = () =>  {
   return (
-    <div>
-      <Form />
-    </div>
-  )}
+    <Form />
+  )};
 
 
 function AccountsContent() {
@@ -65,14 +63,14 @@ function AccountsContent() {
         <button onClick={togglePopup}>Thêm tài khoản</button>
       </div>
       <Table rows={accounts} columns={columns} />
-      <Popup
+      <Popup className="popup"
         visible={isPopupVisible}
         closeOnOutsideClick={true}
         onHiding={togglePopup}
         showTitle={true}
         title={"Thêm tài khoản"}
         width={500}
-        height={500}
+        height={700}
         resizeEnabled={true}
         contentRender={renderContent}
          />
