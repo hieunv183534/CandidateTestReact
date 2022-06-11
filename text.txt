@@ -15,3 +15,9 @@ app: -login
  - questionFill (object question) =>  render ra cái chỗ để ứng viên xem và trả lời câu hỏi
  - menu 
  - header
+
+ chia làm commom component :
+ - Giang: form, question, popup
+ - Mạnh: table, toastMessenger , loader
+
+ - ô bằng đọc: httpmethod , truyền qua body, qua query, qua path

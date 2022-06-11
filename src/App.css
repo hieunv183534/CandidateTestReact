@@ -68,6 +68,10 @@ a{
   text-decoration: none;
 }
 
+p{
+  margin: 0px;
+}
+
 * {
   box-sizing: border-box !important;
 }

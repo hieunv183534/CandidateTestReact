@@ -11,6 +11,7 @@ class AccountApi extends BaseApi {
         return BaseApiConfig.post(`${this.apiController}/login`, {username,password});
     }
 
+
     addAccount(account){
         return BaseApiConfig.post(`${this.apiController}`, account,{headers: {
             "Content-Type": "application/json",
@@ -25,7 +26,10 @@ class AccountApi extends BaseApi {
         }});
     }
     deleteAccout(id){
-        return BaseApiConfig.delete(`${this.apiController}?id=${id} `);
+        return BaseApiConfig.delete(`${this.apiController}?id=${id} `,{headers: {
+            "Content-Type": "application/json",
+            Authorization: sessionStorage.getItem("token"),
+        }});
     }
 
 }
