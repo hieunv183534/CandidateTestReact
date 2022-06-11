@@ -1,7 +1,8 @@
-﻿import axios from "axios";
+
+import axios from "axios";
 
 var BaseAPIConfig = axios.create({
-	baseURL: "https://project20183534.herokuapp.com/",
+	baseURL: "https://candidate-test-2000.herokuapp.com/"
 });
 
 export default BaseAPIConfig;

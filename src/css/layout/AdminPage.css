@@ -10,9 +10,10 @@
 }
 
 .left{
+    width: 200px !important;
     height: 100%;
     flex-grow: 1;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
 }
 

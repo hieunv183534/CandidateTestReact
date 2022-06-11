@@ -6,6 +6,10 @@ class QuestionApi extends BaseApi {
         super();
         this.apiController = "api/Question";
     }
+  
+    getListQuestion(count,index,type,category ){
+        return BaseApiConfig.get(`${this.apiController}count=${count}&?index=${index}&type=${type}&category=${category}`);
+    }
 }
 
 export default new QuestionApi();

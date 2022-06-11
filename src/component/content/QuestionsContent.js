@@ -47,6 +47,7 @@ function QuestionsContent({}){
         <MyPopup isPopupVisible={isPopupVisible} togglePopup={togglePopup} title = {"Thông báo"} contentRender= {renderContent}/>
 
     </div> );
+
 }
 
 export default QuestionsContent;
