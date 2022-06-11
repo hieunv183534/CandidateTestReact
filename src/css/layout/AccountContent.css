@@ -1,0 +1,22 @@
+.header-table {
+  background-color: #ffff;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-table button {
+  background-color: #ffff;
+  margin-right: 50px;
+  color: black;
+  padding: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border: 2px solid gray;
+}
+.header-table button:hover {
+  background-color: #0099cc;
+}
