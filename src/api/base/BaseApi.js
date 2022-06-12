@@ -11,10 +11,12 @@ export default class BaseApi {
      * @returns 
      */
     add(body) {
-        return BaseApiConfig.post(`${this.apiController}`, body,{headers: {
-            "Content-Type": "application/json",
-            Authorization: sessionStorage.getItem("token"),
-        }});
+        return BaseApiConfig.post(`${this.apiController}`, body, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: sessionStorage.getItem("token"),
+            }
+        });
     }
 
     /**
@@ -23,7 +25,12 @@ export default class BaseApi {
      * @returns 
      */
     getById(id) {
-        return BaseApiConfig.get(`${this.apiController}/${id}`);
+        return BaseApiConfig.get(`${this.apiController}/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: sessionStorage.getItem("token"),
+            }
+        });
     }
 
 
@@ -34,7 +41,12 @@ export default class BaseApi {
      * @returns 
      */
     update(id, body) {
-        return BaseApiConfig.put(`${this.apiController}/${id}`, body);
+        return BaseApiConfig.put(`${this.apiController}/${id}`, body, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: sessionStorage.getItem("token"),
+            }
+        });
     }
 
     /**
@@ -43,7 +55,12 @@ export default class BaseApi {
      * @returns 
      */
     delete(id) {
-        return BaseApiConfig.delete(`${this.apiController}/${id}`);
+        return BaseApiConfig.delete(`${this.apiController}/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: sessionStorage.getItem("token"),
+            }
+        });
     }
 
 }

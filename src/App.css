@@ -56,7 +56,7 @@ body{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: NotosansRegular;
+  font-family: NotosansRegular !important;
   color: #212121;
   font-size: 14px;
   background: rgb(34,193,195);
@@ -79,4 +79,8 @@ p{
 #root{
   width: 100%;
   height: 100%;
+}
+
+.MuiDialogActions-root.MuiDialogActions-spacing.css-hlj6pa-MuiDialogActions-root{
+  justify-content: space-between !important;
 }

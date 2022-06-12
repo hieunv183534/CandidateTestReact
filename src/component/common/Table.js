@@ -8,7 +8,7 @@ import {
 import 'devextreme/dist/css/dx.light.css';
 import "../../css/common/Table.css";
 
-function Table({ rows, columns }) {
+function Table({ rows, columns, onRowDblClick }) {
   return (
     <div>
       <DataGrid
@@ -16,12 +16,11 @@ function Table({ rows, columns }) {
         keyExpr="id"
         defaultColumns={columns}
         showBorders={true}
-        allowColumnResizing= {true}>
+        allowColumnResizing={true}
+        onRowDblClick={onRowDblClick}
+        focusedRowEnabled ={true}>
+      </DataGrid>
 
-          <SearchPanel visible={true} />
-          <Column allowSearch={false} />
-        </DataGrid>
-      
     </div>
   );
 }

@@ -4,7 +4,7 @@ import BaseApiConfig from "../base/BaseApiConfig.js"
 class QuestionApi extends BaseApi {
     constructor() {
         super();
-        this.apiController = "api/Question";
+        this.apiController = "api/question";
     }
   
     getListQuestion(count,index,type,category ){
