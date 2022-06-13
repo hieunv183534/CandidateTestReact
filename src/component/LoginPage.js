@@ -48,7 +48,7 @@ function LoginPage() {
         <label>
         <h3>Enter Password:</h3>
           <input
-            type="text"
+            type="Password"
             name="password"
             value={inputs.password || ""}
             onChange={handleChange}
