@@ -17,6 +17,7 @@ class AccountApi extends BaseApi {
             Authorization: sessionStorage.getItem("token"),
         }});
     }
+    
 
 }
 
