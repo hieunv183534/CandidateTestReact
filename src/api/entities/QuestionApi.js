@@ -8,7 +8,7 @@ class QuestionApi extends BaseApi {
     }
   
     getListQuestion(count,index,type,category ){
-        return BaseApiConfig.get(`${this.apiController}count=${count}&?index=${index}&type=${type}&category=${category}`);
+        return BaseApiConfig.get(`${this.apiController}?count=${count}&index=${index}&type=${type}&category=${category}`);
     }
 }
 
