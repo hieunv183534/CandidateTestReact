@@ -11,6 +11,7 @@ import { Form } from 'devextreme-react/form';
 import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
 
+
 function AccountsContent() {
   const [reload,setReload] =  useState(true);
   const [id, setId] = useState('');
@@ -139,7 +140,7 @@ function AccountsContent() {
       <div className="header-table">
         <Button btnText={"Thêm tài khoản"} btnType={"btn-primary"} btnOnClick={addAccountOnClick} />
       </div>
-      <Table rows={accounts} columns={columns} onRowDblClick={accountAction} />
+      <Table rows={accounts} columns={columns}  onRowDblClick={accountAction} />
       <Dialog open={showFormPopup} onClose={() => setShowFormPopup(false)}>
         <DialogTitle>{formTitle}</DialogTitle>
         <DialogContent>
