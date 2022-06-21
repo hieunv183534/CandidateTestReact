@@ -40,6 +40,7 @@ function TestsContent(){
               <p>{user.name}</p>
               <p>{user.location}</p>
               <p>{user.age}</p>
+              <Button btnText={"Remove"} />
             </div>
           )
          })}
