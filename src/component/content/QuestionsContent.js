@@ -11,6 +11,7 @@ import { Form } from 'devextreme-react/form';
 import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
 import Dropdown from '../common/Dropdown.js';
+import Question from '../common/Question.js'
 
 function QuestionsContent() {
     const [reload, setReload] = useState(true);
@@ -24,7 +25,7 @@ function QuestionsContent() {
         category: 1
     };
     const questionEmpty = {
-        type: 3,
+        type: 1,
         contentText: '',
         category: 1,
     }
@@ -175,6 +176,7 @@ function QuestionsContent() {
                     <Form
                         formData={question}>
                     </Form>
+                    <Question questionType={question.type} />
                 </DialogContent>
                 <DialogActions>
                     <Button btnText={"Hủy"} btnType={"btn-secondary"} btnOnClick={() => setShowFormPopup(false)} />
