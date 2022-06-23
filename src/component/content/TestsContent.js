@@ -1,9 +1,14 @@
 import React from "react";
+import Question from "../common/Question.js";
 
-function TestsContent(){
-    return( <div>
-        <h2>Trang test home</h2>
-    </div> );
+function TestsContent() {
+  
+
+  return (
+    <div>
+      
+    </div>
+  );
 }
 
 export default TestsContent;
