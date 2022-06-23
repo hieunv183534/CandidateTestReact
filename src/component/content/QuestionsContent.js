@@ -123,6 +123,7 @@ function QuestionsContent() {
                 ]
         });
     }
+  
 
     const formQuestionOnSubmit = () => {
         console.log(formTitle, question);
@@ -188,6 +189,6 @@ function QuestionsContent() {
                 actions={popupConfirmSetup.actions} />
         </div>
     );
-}
+    };   
 
 export default QuestionsContent;
