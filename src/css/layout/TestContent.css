@@ -34,7 +34,7 @@
     overflow: auto;
 }
 
-.button {
+.btn-remove {
     position: absolute;
     right:    20px;
     bottom:   20px;

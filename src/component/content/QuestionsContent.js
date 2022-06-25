@@ -61,7 +61,7 @@ function QuestionsContent() {
     }
 
     const addQuestionOnClick = () => {
-        setFormTitle("Thêm caau hoir");
+        setFormTitle("Thêm câu hỏi");
         setQuestion(questionEmpty);
         setShowFormPopup(true);
     }
@@ -75,7 +75,7 @@ function QuestionsContent() {
         setId(data.data.id);
         setPopupConfirmSetup({
             title: "Thông báo",
-            content: "Bạn muốn làm gì với caau hoir " + data.data.contentText,
+            content: "Bạn muốn làm gì với câu hỏi " + data.data.contentText,
             isOpen: true,
             actions:
                 [
@@ -90,7 +90,7 @@ function QuestionsContent() {
                         text: "Chỉnh sửa",
                         buttonType: "btn-primary",
                         callBack: () => {
-                            setFormTitle("Chỉnh sửa Caau hoir");
+                            setFormTitle("Chỉnh sửa Câu hỏi");
                             setShowFormPopup(true);
                             setPopupConfirmSetup({ ...popupConfirmSetup, isOpen: false })
                         }
@@ -101,10 +101,10 @@ function QuestionsContent() {
                         callBack: () => {
                             QuestionApi.delete(data.data.id).then(res => {
                                 setReload(!reload);
-                                toast.success('Xóa caau hoir thành công');
+                                toast.success('Xóa câu hỏi thành công');
                                 setPopupConfirmSetup({ ...popupConfirmSetup, isOpen: false })
                             }).catch(err => {
-                                toast.error('Xóa caau hoi thất bại');
+                                toast.error('Xóa câu hỏi thất bại');
                                 setPopupConfirmSetup({ ...popupConfirmSetup, isOpen: false })
                             });
                         }
@@ -115,22 +115,22 @@ function QuestionsContent() {
 
     const formQuestionOnSubmit = () => {
         console.log(formTitle, question);
-        if (formTitle == "Thêm caau hoir") {
+        if (formTitle == "Thêm câu hỏi") {
             QuestionApi.add(question).then(res => {
                 setReload(!reload);
-                toast.success('Thêm caau hoir thành công');
+                toast.success('Thêm câu hỏi thành công');
                 setShowFormPopup(false);
             }).catch(err => {
-                toast.error('Thêm caau hoir thất bại');
+                toast.error('Thêm câu hỏi thất bại');
                 setShowFormPopup(false);
             })
         } else {
             QuestionApi.update(id, question).then(res => {
                 setReload(!reload);
-                toast.success('Cập nhật caau hoir thành công');
+                toast.success('Cập nhật câu hỏi thành công');
                 setShowFormPopup(false);
             }).catch(err => {
-                toast.error('Cập nhật cau hoi thất bại');
+                toast.error('Cập nhật câu hỏi thất bại');
                 setShowFormPopup(false);
             })
         }
@@ -141,7 +141,7 @@ function QuestionsContent() {
     return (
         <div className="table-account">
             <div className="header-table">
-                <Button btnText={"Thêm tài khoản"} btnType={"btn-primary"} btnOnClick={addQuestionOnClick} />
+                <Button btnText={"Thêm câu hỏi"} btnType={"btn-primary"} btnOnClick={addQuestionOnClick} />
             </div>
             <Table rows={questions} columns={columns} onRowDblClick={questionAction} />
             <Dialog open={showFormPopup} onClose={() => setShowFormPopup(false)}>
