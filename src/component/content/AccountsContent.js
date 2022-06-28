@@ -30,7 +30,7 @@ function AccountsContent() {
   }
   const [account, setAccount] = useState(accountEmpty);
   const columns = [
-    "id",
+    
     "userName",
     "fullName",
     "email",
