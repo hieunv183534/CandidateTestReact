@@ -161,6 +161,24 @@ function QuestionsContent() {
         loadQuestions();
     }
 
+    const newTracNghiem = (listDapAnTracNghiem)=>{
+        console.log(listDapAnTracNghiem);
+    }
+
+    const contentJson = [
+        {
+            key: "Việt nam",
+            value: true
+        },
+        {
+            key: "Trung quốc",
+            value: false
+        },
+        {
+            key: "Nhật bản",
+            value: false
+        }
+    ]
 
 
     return (
@@ -176,7 +194,7 @@ function QuestionsContent() {
                     <Form
                         formData={question}>
                     </Form>
-                    <Question questionType={question.type} />
+                    {question.type != 3 ? <Question contentJSON={contentJson} questionType={question.type} setNewContentJson={newTracNghiem} /> : null}
                 </DialogContent>
                 <DialogActions>
                     <Button btnText={"Hủy"} btnType={"btn-secondary"} btnOnClick={() => setShowFormPopup(false)} />
