@@ -12,6 +12,7 @@ import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
 import Dropdown from '../common/Dropdown.js';
 import Question from '../common/Question.js'
+import { Checkbox } from "@mui/material";
 
 function QuestionsContent() {
     const [reload, setReload] = useState(true);
@@ -124,7 +125,7 @@ function QuestionsContent() {
                 ]
         });
     }
-  
+
 
     const formQuestionOnSubmit = () => {
         console.log(formTitle, question);
@@ -161,7 +162,7 @@ function QuestionsContent() {
         loadQuestions();
     }
 
-    const newTracNghiem = (listDapAnTracNghiem)=>{
+    const newTracNghiem = (listDapAnTracNghiem) => {
         console.log(listDapAnTracNghiem);
     }
 
@@ -209,6 +210,6 @@ function QuestionsContent() {
                 actions={popupConfirmSetup.actions} />
         </div>
     );
-    };   
+};
 
 export default QuestionsContent;
