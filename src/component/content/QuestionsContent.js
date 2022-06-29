@@ -12,6 +12,7 @@ import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
 import Dropdown from '../common/Dropdown.js';
 import Question from '../common/Question.js'
+import { Checkbox } from "@mui/material";
 
 function QuestionsContent() {
     const [reload, setReload] = useState(true);
@@ -175,7 +176,10 @@ function QuestionsContent() {
                 <DialogContent>
                     <Form
                         formData={question}>
+        
+                            
                     </Form>
+   
                     <Question questionType={question.type} />
                 </DialogContent>
                 <DialogActions>
