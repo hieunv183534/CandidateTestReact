@@ -21,10 +21,12 @@ function QuestionsContent() {
     const [showFormPopup, setShowFormPopup] = useState(false);
     const [formTitle, setFormTitle] = useState("Thêm tài khoản");
     const [popupConfirmSetup, setPopupConfirmSetup] = useState({ isOpen: false, actions: [] });
-    let filters = {
+
+    
+    const [filters, setFilters] = useState({
         type: 1,
-        category: 1
-    };
+        category: 1, 
+    });
     const questionEmpty = {
         type: 1,
         contentText: '',
@@ -40,6 +42,7 @@ function QuestionsContent() {
 
 
     const loadQuestions = () => {
+        console.log(filters);
         QuestionApi.getListQuestion(100, 0, filters.type, filters.category)
             .then((res) => {
                 res.data.data.data.forEach(q => {
@@ -150,24 +153,34 @@ function QuestionsContent() {
         }
     }
 
-    const actions = [
+    const actions1 = [
         { id: 1, text1: "Trắc nghiệm 1 đáp án" },
         { id: 2, text1: "Trắc nghiệm nhiều đáp án" },
         { id: 3, text1: "Tự luận" }
     ];
+    const actions2 = [
+        { id: 1, text1: "Gmat" },
+        { id: 2, text1: "Tiếng anh" },
+        { id: 3, text1: "Chuyên môn" }
+    ];
 
-    const dropdownOnSelect = (item) => {
-        filters.type = item.id;
-        console.log(filters);
+    const dropdownOnSelect1 = (actions1) => {
+        setFilters({...filters, type: actions1.id}) ;
         loadQuestions();
-    }
+    }   
+    const dropdownOnSelect2 = (actions2) => {
+        setFilters({...filters, category: actions2.id}) ;
+        loadQuestions();
+    }   
 
-
+    
 
     return (
         <div className="table-account">
             <div className="header-table">
-                <Dropdown actions={actions} onSelect={dropdownOnSelect} />
+                <Dropdown actions={actions1} onSelect={dropdownOnSelect1} />
+                <Dropdown actions={actions2} onSelect={dropdownOnSelect2} />
+                
                 <Button btnText={"Thêm câu hỏi"} btnType={"btn-primary"} btnOnClick={addQuestionOnClick} />
             </div>
             <Table rows={questions} columns={columns} onRowDblClick={questionAction} />
