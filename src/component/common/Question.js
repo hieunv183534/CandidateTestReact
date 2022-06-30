@@ -50,6 +50,8 @@ function Question({ contentJSON = [], questionType, setNewContentJson }) {
               changeValue(e, index);
             }}
           />
+          <button onClick={()=>{
+          }}> <i class="fas fa-trash"></i> </button>
         </div>
       ))}
       <button
