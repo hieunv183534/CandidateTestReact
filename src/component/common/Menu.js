@@ -29,6 +29,11 @@ function Menu() {
             text: 'Quản lí bài thi'
         },
         {
+            to: '/admin/testcandidate',
+            icon: 'square',
+            text: 'Người thi - bài thi'
+        },
+        {
             to: '/admin/testresult',
             icon: 'bullseye',
             text: 'Quản lí kết quả'

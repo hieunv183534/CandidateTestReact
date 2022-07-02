@@ -5,7 +5,6 @@ function Question({ contentJSON = [], questionType, setNewContentJson }) {
   const [ls, setLs] = useState(contentJSON);
 
   const changeKey = (e, i) => {
-    console.info(e.target.value);
     let _ls = [...ls];
     let _item = ls[i];
     _item.key = e.target.value;
@@ -15,7 +14,6 @@ function Question({ contentJSON = [], questionType, setNewContentJson }) {
   };
 
   const changeValue = (e, i) => {
-    console.info(e.target.checked);
     let _ls = [...ls];
     if (questionType == 1) {
       _ls.forEach((item) => {

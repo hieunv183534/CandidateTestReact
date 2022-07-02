@@ -29,16 +29,14 @@ function TestsContent() {
   const [test, setTest] = useState(testEmpty);
   const columns = [
     "testCode",
-    "TestName",
+    "testName",
     "sections",
-   
   ];
 
   useEffect(() => {
-    TestApi.getListTest(0, 100, "", "")
+    TestApi.getListTest(100, 0, "")
       .then((res) => {
         setTests(res.data.data.data);
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.error(err);

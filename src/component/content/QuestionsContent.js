@@ -26,7 +26,7 @@ function QuestionsContent() {
         category: 1
     };
     const questionEmpty = {
-        type: 1,
+        type: 2,
         contentText: '',
         category: 1,
     }

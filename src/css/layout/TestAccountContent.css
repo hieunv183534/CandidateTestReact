@@ -1,0 +1,74 @@
+.test-candidate-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.test-candidate-header{
+    width: 100%;
+    height: 60px;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+    align-items: center;
+}
+
+.test-candidate-body{
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+}
+
+.list-test{
+    height: 100%;
+    width: 65%;
+}
+
+.list-candidate{
+    height: 100%;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-left:1px solid blue ;
+}
+
+.list-candidate h4{
+    margin-top: 0;
+}
+
+.list-of-candidate{
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.candidate-item{
+    display: flex;
+    width: 80%;
+    background-color: azure;
+    height: 30px;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.candidate-item p{
+    font-size: 16px;
+}
+
+.candidate-item input[type='checkbox']{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}

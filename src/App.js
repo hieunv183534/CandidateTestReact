@@ -12,6 +12,7 @@ import AccountsContent from './component/content/AccountsContent'
 import QuestionsContent from './component/content/QuestionsContent'
 import TestsContent from './component/content/TestsContent'
 import TestResultsContent from './component/content/TestResultsContent'
+import TestCandidateContent from './component/content/TestCandidateContent'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="account" element={<AccountsContent />} />
               <Route path="question" element={<QuestionsContent />} />
               <Route path="test" element={<TestsContent />} />
+              <Route path="testcandidate" element={<TestCandidateContent />} />
               <Route path="testresult" element={<TestResultsContent />} />
             </Route>
           </Routes >
