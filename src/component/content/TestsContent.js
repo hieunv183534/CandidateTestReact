@@ -19,30 +19,35 @@ function TestsContent() {
   const [formTitle, setFormTitle] = useState("Thêm bài kiểm tra");
   const [popupConfirmSetup, setPopupConfirmSetup] = useState({ isOpen: false, actions: [] });
   const testEmpty = {
+    section:'',
     testCode: '',
-    testName: '',
-    sections: ''
+    testName: ''
   
     
   }
   
-  const [test, setTest] = useState(testEmpty);
-  const columns = [
-    "testCode",
-    "testName",
-    "sections",
-  ];
-
   useEffect(() => {
-    TestApi.getListTest(100, 0, "")
+    TestApi.getListTest(100, 0, "", "")
       .then((res) => {
         setTests(res.data.data.data);
+        console.log( 'Đã nhận api' + res.data.data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, [reload]);
 
+
+  const [test, setTest] = useState(testEmpty);
+  const columns = [
+    "sectionName",
+    "testCode",
+    "testName"
+  ];
+
+  
+
+ 
   const addTestOnClick = () => {
     setFormTitle("Thêm bài kiểm tra");
     setTest(testEmpty);

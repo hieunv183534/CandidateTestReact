@@ -18,7 +18,9 @@ function Table({ rows, columns, onRowDblClick }) {
         showBorders={true}
         allowColumnResizing={true}
         onRowDblClick={onRowDblClick}
-        focusedRowEnabled ={true}>
+        focusedRowEnabled ={true}
+        
+        >
       </DataGrid>
 
     </div>

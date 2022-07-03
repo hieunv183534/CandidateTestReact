@@ -26,7 +26,6 @@ function AccountsContent() {
     email: '',
     dateOfBirth: new Date(),
     address: '',
-    role: ''
   }
   const [account, setAccount] = useState(accountEmpty);
   const columns = [
@@ -146,6 +145,8 @@ function AccountsContent() {
           <Form
             formData={account}>
           </Form>
+          <input type="radio" />
+          <input type="radio" />
         </DialogContent>
         <DialogActions>
           <Button btnText={"Hủy"} btnType={"btn-secondary"} btnOnClick={() => setShowFormPopup(false)} />
