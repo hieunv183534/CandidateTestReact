@@ -21,6 +21,7 @@ function AccountsContent() {
   const [showFormPopup, setShowFormPopup] = useState(false);
   const [formTitle, setFormTitle] = useState("Thêm tài khoản");
   const [popupConfirmSetup, setPopupConfirmSetup] = useState({ isOpen: false, actions: [] });
+  const [role, setRole] = useState ("");
   const accountEmpty = {
     userName: '',
     fullName: '',
@@ -31,10 +32,7 @@ function AccountsContent() {
     address: '',
    
   }
-  let filters = {
-    role:1
-    
-};
+  
   const [account, setAccount] = useState(accountEmpty);
   const columns = [
     
@@ -73,7 +71,7 @@ function AccountsContent() {
       email: data.data.email,
       dateOfBirth: new Date(data.data.dateOfBirth),
       address: data.data.address,
-      role: data.data.role
+      role: role,
     });
     setId(data.data.id);
     setPopupConfirmSetup({
@@ -118,8 +116,9 @@ function AccountsContent() {
 
   const formAccountOnSubmit = () => {
     console.log(formTitle, account);
+    
     if (formTitle == "Thêm tài khoản") {
-      AccountApi.add(account).then(res => {
+      AccountApi.add(account,role).then(res => {
         setReload(!reload);
         toast.success('Thêm tài khoản thành công');
         setShowFormPopup(false);
@@ -144,10 +143,11 @@ function AccountsContent() {
    
 ];
 const dropdownOnSelect = (item) => {
-  filters.role = item.id;
+  if(item.id==1) role = "Admin";
+  else role = "User";
     
 }
-
+ 
 
   return (
     <div className="table-account">

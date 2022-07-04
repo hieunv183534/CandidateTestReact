@@ -10,8 +10,8 @@ export default class BaseApi {
      * @param {*} body 
      * @returns 
      */
-    add(body) {
-        return BaseApiConfig.post(`${this.apiController}`, body, {
+    add(body,role) {
+        return BaseApiConfig.post(`${this.apiController}`, body,role, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: sessionStorage.getItem("token"),

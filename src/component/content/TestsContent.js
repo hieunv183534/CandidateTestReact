@@ -18,6 +18,7 @@ function TestsContent() {
   const [showFormPopup, setShowFormPopup] = useState(false);
   const [formTitle, setFormTitle] = useState("Thêm bài kiểm tra");
   const [popupConfirmSetup, setPopupConfirmSetup] = useState({ isOpen: false, actions: [] });
+  const [search, setSearch] = useState ("");
   const testEmpty = {
     testCode: '',
     testName: '',
@@ -120,6 +121,9 @@ function TestsContent() {
       })
     }
   }
+  const searchOnClick = () => {
+       reload();
+  }
 
 
 
@@ -128,6 +132,8 @@ function TestsContent() {
   return (
     <div className="table-account">
       <div className="header-table">
+      <input type="text" className="search" placeholder="Search for..." onChange={(e)=>setSearch(e.target.value)}/>
+      <Button btnText={"Tìm kiếm"} btnType={"btn-primary"}  btnOnClick={searchOnClick} />
         <Button btnText={"Thêm bài kiểm tra"} btnType={"btn-primary"} btnOnClick={addTestOnClick} />
       </div>
       <Table rows={tests} columns={columns} onRowDblClick={testAction} />

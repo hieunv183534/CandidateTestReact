@@ -10,7 +10,12 @@
 .my-dropdownAcc{
     width: 300px;
     height: 36px ;
-    margin-top: 15px;
-    margin-left: 55px;
+    margin-top: 13px;
+    margin-left: 53px;
   
+}
+.search{
+    width: 300px;
+    height: 36px ;
+    margin-left: 55px;
 }
