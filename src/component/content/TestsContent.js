@@ -29,7 +29,7 @@ function TestsContent() {
   const [test, setTest] = useState(testEmpty);
   const columns = [
     "testCode",
-    "TestName",
+    "testName",
     "sections",
    
   ];
@@ -120,6 +120,8 @@ function TestsContent() {
       })
     }
   }
+
+
 
 
 

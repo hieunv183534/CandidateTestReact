@@ -10,6 +10,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Form } from 'devextreme-react/form';
 import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
+import { Checkbox, Radio } from "@mui/material";
+import Dropdown from '../common/Dropdown.js';
+import DropdownAcc from '../common/DropdownAcc.js';
 
 function AccountsContent() {
   const [reload,setReload] =  useState(true);
@@ -26,8 +29,12 @@ function AccountsContent() {
     email: '',
     dateOfBirth: new Date(),
     address: '',
-    role: ''
+   
   }
+  let filters = {
+    role:1
+    
+};
   const [account, setAccount] = useState(accountEmpty);
   const columns = [
     
@@ -131,7 +138,15 @@ function AccountsContent() {
       })
     }
   }
-
+  const actions = [
+    { id: 1, text1: "Admin" },
+    { id: 2, text1: "User" }
+   
+];
+const dropdownOnSelect = (item) => {
+  filters.role = item.id;
+    
+}
 
 
   return (
@@ -144,8 +159,11 @@ function AccountsContent() {
         <DialogTitle>{formTitle}</DialogTitle>
         <DialogContent>
           <Form
-            formData={account}>
+            formData={account}>   
           </Form>
+          <div className="role">Role 
+          <DropdownAcc className="dropAcc" actions={actions} onSelect={dropdownOnSelect} />
+          </div>
         </DialogContent>
         <DialogActions>
           <Button btnText={"Hủy"} btnType={"btn-secondary"} btnOnClick={() => setShowFormPopup(false)} />

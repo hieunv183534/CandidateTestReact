@@ -1,5 +1,16 @@
 .my-dropdown{
     width: 200px;
     height: 36px !important;
+  
 }
 
+.role{
+   margin-left: 13px;  
+}
+.my-dropdownAcc{
+    width: 300px;
+    height: 36px ;
+    margin-top: 15px;
+    margin-left: 55px;
+  
+}

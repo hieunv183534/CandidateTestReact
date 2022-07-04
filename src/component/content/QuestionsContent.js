@@ -12,7 +12,7 @@ import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
 import Dropdown from '../common/Dropdown.js';
 import Question from '../common/Question.js'
-import { Checkbox } from "@mui/material";
+
 
 function QuestionsContent() {
     const [reload, setReload] = useState(true);
@@ -59,14 +59,14 @@ function QuestionsContent() {
 
     const completeQuestion = (question) => {
         switch (question.type) {
-            case 1: question.type = 'Trắc nghiệm 1 đáp án'; break;
+            default : question.type = 'Trắc nghiệm 1 đáp án'; break;
             case 2: question.type = 'Trắc nghiệm nhiều đáp án'; break;
             case 3: question.type = 'Tự luận'; break;
         }
 
 
         switch (question.category) {
-            case 1: question.category = 'Gmat'; break;
+            default : question.category = 'Gmat'; break;
             case 2: question.category = 'Tiếng anh'; break;
             case 3: question.category = 'Chuyên môn'; break;
         }
@@ -175,9 +175,7 @@ function QuestionsContent() {
                 <DialogTitle>{formTitle}</DialogTitle>
                 <DialogContent>
                     <Form
-                        formData={question}>
-        
-                            
+                        formData={question}>      
                     </Form>
    
                     <Question questionType={question.type} />
