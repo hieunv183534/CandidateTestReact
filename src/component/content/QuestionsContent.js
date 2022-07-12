@@ -7,18 +7,19 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Form } from "devextreme-react/form";
+import { Form, Item } from "devextreme-react/form";
 import PopupConfirm from "../common/PopupConfirm.js";
 import { toast } from "react-toastify";
 import Dropdown from "../common/Dropdown.js";
 import Question from "../common/Question.js";
-import { Checkbox } from "@mui/material";
 
-var  type= 1;
-var category= 1;
+var type = '';
+var category = '';
 
 
 function QuestionsContent() {
+  const types = ["Trắc nghiệm 1 đáp án", "Trắc nghiệm nhiều đáp án", "Tự luận"];
+  const categorys = ["Gmat", "Tiếng Anh", "Chuyên môn"];
   const [reload, setReload] = useState(true);
   const [id, setId] = useState("");
   const [questions, setQuestions] = useState([]);
@@ -28,16 +29,16 @@ function QuestionsContent() {
     isOpen: false,
     actions: [],
   });
-
-  //   const [filters, setFilters] = useState();
   const questionEmpty = {
-    contentText: "",
+    contentText: ""
   };
   const [question, setQuestion] = useState(questionEmpty);
   const columns = ["type", "contentText", "category"];
+  const [contentJSON, setContentJSON] = useState([]);
+
+  const [questionType, setQuestionType] = useState(1);
 
   const loadQuestions = () => {
-    console.log({type,category});
     QuestionApi.getListQuestion(100, 0, type, category)
       .then((res) => {
         res.data.data.data.forEach((q) => {
@@ -56,29 +57,8 @@ function QuestionsContent() {
   }, [reload]);
 
   const completeQuestion = (question) => {
-    switch (question.type) {
-      case 1:
-        question.type = "Trắc nghiệm 1 đáp án";
-        break;
-      case 2:
-        question.type = "Trắc nghiệm nhiều đáp án";
-        break;
-      case 3:
-        question.type = "Tự luận";
-        break;
-    }
-
-    switch (question.category) {
-      case 1:
-        question.category = "Gmat";
-        break;
-      case 2:
-        question.category = "Tiếng anh";
-        break;
-      case 3:
-        question.category = "Chuyên môn";
-        break;
-    }
+    question.type = types[question.type - 1];
+    question.category = categorys[question.category - 1];
     return question;
   };
 
@@ -86,14 +66,23 @@ function QuestionsContent() {
     setFormTitle("Thêm câu hỏi");
     setQuestion(questionEmpty);
     setShowFormPopup(true);
+    setContentJSON([]);
   };
 
   const questionAction = (data) => {
+    console.log(data.data);
     setQuestion({
       type: data.data.type,
       contentText: data.data.contentText,
       category: data.data.category,
     });
+    for (let i = 0; i < 3; i++) {
+      if (types[i] == data.data.type) {
+        setQuestionType(i + 1);
+        break;
+      }
+    }
+    setContentJSON(data.data.contentListObject);
     setId(data.data.id);
     setPopupConfirmSetup({
       title: "Thông báo",
@@ -137,9 +126,23 @@ function QuestionsContent() {
   };
 
   const formQuestionOnSubmit = () => {
-    console.log(formTitle, question);
+    let myType;
+    let myCategory;
+    for (let i = 0; i < 3; i++) {
+      if (types[i] == question.type) {
+        myType = i + 1;
+        break;
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      if (categorys[i] == question.category) {
+        myCategory = i + 1;
+        break;
+      }
+    }
+    let _question = { ...question, contentListObject: contentJSON, type: myType, category: myCategory };
     if (formTitle == "Thêm câu hỏi") {
-      QuestionApi.add(question)
+      QuestionApi.add(_question)
         .then((res) => {
           setReload(!reload);
           toast.success("Thêm câu hỏi thành công");
@@ -150,7 +153,7 @@ function QuestionsContent() {
           setShowFormPopup(false);
         });
     } else {
-      QuestionApi.update(id, question)
+      QuestionApi.update(id, _question)
         .then((res) => {
           setReload(!reload);
           toast.success("Cập nhật câu hỏi thành công");
@@ -164,24 +167,38 @@ function QuestionsContent() {
   };
 
   const actions1 = [
+    { id: '', text1: "Tất cả" },
     { id: 1, text1: "Trắc nghiệm 1 đáp án" },
     { id: 2, text1: "Trắc nghiệm nhiều đáp án" },
     { id: 3, text1: "Tự luận" },
   ];
   const actions2 = [
+    { id: '', text1: "Tất cả" },
     { id: 1, text1: "Gmat" },
     { id: 2, text1: "Tiếng anh" },
     { id: 3, text1: "Chuyên môn" },
   ];
 
   const dropdownOnSelect1 = (actions1) => {
-     type= actions1.id ;
+    type = actions1.id;
     loadQuestions();
   };
   const dropdownOnSelect2 = (actions2) => {
-     category= actions2.id ;
+    category = actions2.id;
     loadQuestions();
   };
+
+
+
+  const changeType = (e) => {
+    for (let i = 0; i < 3; i++) {
+      if (types[i] == e.itemData) {
+        setQuestionType(i + 1);
+        break;
+      }
+    }
+  }
+
 
   return (
     <div className="table-account">
@@ -203,12 +220,26 @@ function QuestionsContent() {
       <Dialog open={showFormPopup} onClose={() => setShowFormPopup(false)}>
         <DialogTitle>{formTitle}</DialogTitle>
         <DialogContent>
-          <Form formData={question}></Form>
-          Type
-          <Dropdown actions={actions1} onSelect={dropdownOnSelect1} />
-          Category
-        <Dropdown actions={actions2} onSelect={dropdownOnSelect2} />
-          <Question questionType={question.type} />
+          <Form formData={question}>
+            <Item dataField="contentText" />
+            <Item
+              dataField="type"
+              editorType="dxSelectBox"
+              editorOptions={{
+                items: types,
+                onItemClick: changeType
+              }}
+            />
+            <Item
+              dataField="category"
+              editorType="dxSelectBox"
+              editorOptions={{
+                items: categorys
+              }}
+            />
+          </Form>
+          {questionType == 3 ? null : <Question contentJSON={contentJSON} questionType={questionType} setNewContentJson={setContentJSON} />}
+
         </DialogContent>
         <DialogActions>
           <Button

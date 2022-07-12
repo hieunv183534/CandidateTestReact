@@ -29,6 +29,14 @@ function Question({ contentJSON = [], questionType, setNewContentJson }) {
     setNewContentJson(ls);
   };
 
+  const deleteItem = (index) => {
+    console.log(index);
+    let _ls = [...ls];
+    _ls.splice(index, 1);
+    setLs(_ls);
+    setNewContentJson(ls);
+  }
+
   return (
     <div className="question">
       {ls.map((item, index) => (
@@ -48,8 +56,7 @@ function Question({ contentJSON = [], questionType, setNewContentJson }) {
               changeValue(e, index);
             }}
           />
-          <button onClick={()=>{
-          }}> <i class="fas fa-trash"></i> </button>
+          <button onClick={() => { deleteItem(index) }}> <i className="fas fa-trash"></i> </button>
         </div>
       ))}
       <button

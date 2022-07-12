@@ -11,15 +11,7 @@ import { Form, Item } from "devextreme-react/form";
 import PopupConfirm from "../common/PopupConfirm.js";
 import { toast } from "react-toastify";
 import DropDown from "../common/Dropdown";
-const accountEmpty = {
-  userName: "",
-  fullName: "",
-  password: "",
-  phone: "",
-  email: "",
-  dateOfBirth: new Date(),
-  address: "",
-};
+
 const columns = [
   "userName",
   "fullName",
@@ -51,10 +43,17 @@ function AccountsContent() {
   const [accounts, setAccounts] = useState([]);
   const [showFormPopup, setShowFormPopup] = useState(false);
   const [formTitle, setFormTitle] = useState("Thêm tài khoản");
-  const [popupConfirmSetup, setPopupConfirmSetup] = useState({
-    isOpen: false,
-    actions: [],
-  });
+  const [popupConfirmSetup, setPopupConfirmSetup] = useState({ isOpen: false, actions: [] });
+  const accountEmpty = {
+    userName: '',
+    fullName: '',
+    password: '',
+    phone: '',
+    email: '',
+    dateOfBirth: new Date(),
+    address: '',
+    role: ''
+  }
   const [account, setAccount] = useState(accountEmpty);
 
   useEffect(() => {
@@ -186,12 +185,13 @@ function AccountsContent() {
             <Item dataField="password" />
             <Item dataField="phone" />
             <Item dataField="email" />
+            <Item dataField="address" />
             <Item dataField="dateOfBirth" editorType="dxDateBox" />
             <Item
               dataField="role"
               editorType="dxSelectBox"
               editorOptions={{
-                items: ["admin", "user"],
+                items: ["admin", "candidate"],
               }}
             />
           </Form>
