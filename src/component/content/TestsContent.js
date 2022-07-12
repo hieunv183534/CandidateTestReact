@@ -26,31 +26,8 @@ function TestsContent() {
     testName: '',
     sections: [
       {
-        sectionName: 'section name 1',
+        sectionName: '',
         questions: [
-          {
-            id: "1",
-            contentText: "câu hỏi 1"
-          },
-          {
-            id: "2",
-            contentText: "câu hỏi 2"
-          },
-
-        ]
-      },
-      {
-        sectionName: 'section name 2',
-        questions: [
-          {
-            id: "3",
-            contentText: "câu hỏi 3"
-          },
-          {
-            id: "4",
-            contentText: "câu hỏi 4"
-          },
-
         ]
       }
     ]
@@ -79,7 +56,6 @@ function TestsContent() {
     "testCode",
     "testName"
   ];
-
 
 
 
@@ -139,14 +115,21 @@ function TestsContent() {
   const formTestOnSubmit = () => {
     console.log(formTitle, test);
     if (formTitle == "Thêm bài kiểm tra") {
-      TestApi.add(test).then(res => {
+      let _test = { ...test };
+      _test.sections.forEach((section, index) => {
+        section.questionSections = [];
+        section.questions.forEach(question => {
+          section.questionSections.push({ questionId: question.id });
+        });
+      });
+      TestApi.add(_test).then(res => {
         setReload(!reload);
         toast.success('Thêm bài kiểm tra thành công');
         setShowFormPopup(false);
       }).catch(err => {
         toast.error('Thêm bài kiểm tra thất bại');
         setShowFormPopup(false);
-      })
+      });
     } else {
       TestApi.update(id, test).then(res => {
         setReload(!reload);
@@ -160,17 +143,23 @@ function TestsContent() {
   }
 
   const addSection = () => {
-    setTest({ ...test, sections: [...test.sections, { sectionName: "Nhập tên phần thi", questions: [] }] });
+    setTest({ ...test, sections: [...test.sections, { sectionName: "", questions: [] }] });
   }
 
   const questionClick = (i) => {
     console.log(questions[i]);
-    let _test = test;
+    let _test = { ...test };
     _test.sections[sectionIndex].questions =
       [..._test.sections[sectionIndex].questions, { id: questions[i].id, contentText: questions[i].contentText }];
-      console.log(_test);
+    console.log(_test);
     setTest(_test);
     console.log(test);
+  }
+
+  const setSectionName = (value, index) => {
+    let _test = { ...test };
+    _test.sections[index].sectionName = value;
+    setTest(_test);
   }
 
 
@@ -186,19 +175,20 @@ function TestsContent() {
         <DialogContent>
           <div className="test-form">
             <div className="test-form-left">
-              <p>Tên câu hỏi</p>
-              <input type="text" />
-              <p>Mã câu hỏi</p>
-              <input type="text" />
+              <p>Tên bài thi</p>
+              <input type="text" value={test.testName} onInput={(e) => { setTest({ ...test, testName: e.target.value }) }} />
+              <p>Mã bài thi</p>
+              <input type="text" value={test.testCode} onInput={(e) => { setTest({ ...test, testCode: e.target.value }) }} />
               <div className="list-section">
                 {test.sections.map((section, index) => (
                   <div className="section-item">
                     <input type="radio" name="section" onClick={() => { setSectionIndex(index) }} />
                     <p>Tên phần thi</p>
-                    <input type="text" value={section.sectionName} />
+                    <input placeholder="Nhập tên phần thi" type="text" value={section.sectionName} onInput={(e) => { setSectionName(e.target.value, index) }} />
                     <div className="list-questions-of-section">
                       {section.questions.map((question, index) => (
                         <div className="question-item">{question.contentText}
+                          {question.type == 3 ? <input/> : <Question questionType={question.type} contentJSON={[]}/>} 
                         </div>
                       ))}
                     </div>
