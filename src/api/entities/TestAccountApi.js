@@ -10,6 +10,10 @@ class TestAccountApi extends BaseApi {
     updateTestAccount(change){
         return BaseApiConfig.post(`${this.apiController}/updateTestAccount`, change);
     }
+    assignTestToAccount(candidateId,testId){
+        return BaseApiConfig.post(`${this.apiController}/assignTestToAcccount?candidateId=${candidateId}&testId=${testId}`);
+
+    }
     
 }
 
