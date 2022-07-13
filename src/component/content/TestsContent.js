@@ -8,10 +8,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Form } from 'devextreme-react/form';
 import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
-import Question from '../common/Question.js';
 
 function TestsContent() {
   const [reload, setReload] = useState(true);
@@ -28,32 +26,30 @@ function TestsContent() {
     sections: [
       {
         sectionName: '',
-        questions: [
+        questionSections: [
         ]
       }
     ]
   }
 
   useEffect(() => {
-    TestApi.getListTest(100, 0, "", "")
+    TestApi.getListTest(100, 0, "")
       .then((res) => {
         setTests(res.data.data.data);
-        console.log('Đã nhận api' + res.data.data);
       })
       .catch((err) => {
         console.error(err);
       });
 
-    QuestionApi.getListQuestion(100, 0, 3, 1).then(res => {
+    QuestionApi.getListQuestion(100, 0, "", "").then(res => {
       setQuestions(res.data.data.data);
-    })
+    });
 
   }, [reload]);
 
 
   const [test, setTest] = useState(testEmpty);
   const columns = [
-    "sectionName",
     "testCode",
     "testName"
   ];
@@ -64,14 +60,31 @@ function TestsContent() {
     setFormTitle("Thêm bài kiểm tra");
     setTest(testEmpty);
     setShowFormPopup(true);
+    QuestionApi.getListQuestion(100, 0, "", "").then(res => {
+      setQuestions(res.data.data.data);
+    });
   }
 
   const testAction = (data) => {
-    setTest({
-      testCode: data.data.testCode,
-      testName: data.data.testName,
-      sections: data.data.sections
-    });
+    // setTest(data.data);
+
+
+    TestApi.getById(data.data.id).then(res => {
+      setTest(res.data.data);
+      QuestionApi.getListQuestion(100, 0, "", "").then(res1 => {
+        let _quesions = res1.data.data.data;
+        res.data.data.sections.forEach(section => {
+          section.questionSections.forEach(questionSection => {
+            _quesions = _quesions.filter(q => q.id != questionSection.questionId);
+          });
+        });
+        setQuestions(_quesions);
+      });
+
+
+    }).catch(err => {
+      console.log(err);
+    })
     setId(data.data.id);
     setPopupConfirmSetup({
       title: "Thông báo",
@@ -114,52 +127,77 @@ function TestsContent() {
   }
 
   const formTestOnSubmit = () => {
-    console.log(formTitle, test);
+
     if (formTitle == "Thêm bài kiểm tra") {
+
       let _test = { ...test };
-      _test.sections.forEach((section, index) => {
-        section.questionSections = [];
-        section.questions.forEach(question => {
-          section.questionSections.push({ questionId: question.id });
-        });
+      _test.sections.forEach(section => {
+        section.questionSections.forEach(questionSection => {
+          questionSection.question = null;
+        })
       });
+
       TestApi.add(_test).then(res => {
+        setTest(testEmpty);
         setReload(!reload);
         toast.success('Thêm bài kiểm tra thành công');
         setShowFormPopup(false);
       }).catch(err => {
-        toast.error('Thêm bài kiểm tra thất bại');
+        setTest(testEmpty);
+        toast.error('Mã bài thi đã tồn tại');
         setShowFormPopup(false);
       });
     } else {
-      TestApi.update(id, test).then(res => {
-        setReload(!reload);
-        toast.success('Cập nhật bài kiểm tra thành công');
-        setShowFormPopup(false);
-      }).catch(err => {
-        toast.error('Cập nhật bài kiểm tra thất bại');
-        setShowFormPopup(false);
-      })
+      // TestApi.update(id, test).then(res => {
+      //   setReload(!reload);
+      //   toast.success('Cập nhật bài kiểm tra thành công');
+      //   setShowFormPopup(false);
+      // }).catch(err => {
+      //   toast.error('Cập nhật bài kiểm tra thất bại');
+      //   setShowFormPopup(false);
+      // })
+      toast.success('Tính năng đang được hoàn thiện');
     }
   }
 
   const addSection = () => {
-    setTest({ ...test, sections: [...test.sections, { sectionName: "", questions: [] }] });
+    setTest({ ...test, sections: [...test.sections, { sectionName: "", questionSections: [] }] });
   }
 
   const questionClick = (i) => {
-    console.log(questions[i]);
     let _test = { ...test };
-    _test.sections[sectionIndex].questions =
-      [..._test.sections[sectionIndex].questions, { id: questions[i].id, contentText: questions[i].contentText }];
-    console.log(_test);
+    _test.sections[sectionIndex].questionSections =
+      [..._test.sections[sectionIndex].questionSections, { questionId: questions[i].id, question: questions[i] }];
     setTest(_test);
-    console.log(test);
+
+    let _questions = [...questions];
+    _questions.splice(i, 1);
+    setQuestions(_questions);
   }
 
   const setSectionName = (value, index) => {
     let _test = { ...test };
     _test.sections[index].sectionName = value;
+    setTest(_test);
+  }
+
+  const deleteSection = (i) => {
+    let _test = { ...test };
+    let _quesions = [...questions];
+    let sectionRemove = _test.sections.splice(i, 1);
+    sectionRemove[0].questionSections.forEach(questionSection => {
+      _quesions.push(questionSection.question);
+    });
+    setTest(_test);
+    setQuestions(_quesions);
+  }
+
+  const removeQuestionFromSection = (indexSection, indexQuestion) => {
+    let _test = { ...test };
+    let _questions = [...questions];
+    _questions.push(_test.sections[indexSection].questionSections[indexQuestion].question);
+    setQuestions(_questions);
+    _test.sections[indexSection].questionSections.splice(indexQuestion, 1);
     setTest(_test);
   }
 
@@ -171,7 +209,7 @@ function TestsContent() {
         <Button btnText={"Thêm bài kiểm tra"} btnType={"btn-primary"} btnOnClick={addTestOnClick} />
       </div>
       <Table rows={tests} columns={columns} onRowDblClick={testAction} />
-      <Dialog open={true} onClose={() => setShowFormPopup(false)}>
+      <Dialog open={showFormPopup} onClose={() => setShowFormPopup(false)}>
         <DialogTitle>{formTitle}</DialogTitle>
         <DialogContent>
           <div className="test-form">
@@ -181,18 +219,17 @@ function TestsContent() {
               <p>Mã bài thi</p>
               <input type="text" value={test.testCode} onInput={(e) => { setTest({ ...test, testCode: e.target.value }) }} />
               <div className="list-section">
-                {test.sections.map((section, index) => (
+                {test.sections.map((section, index1) => (
                   <div className="section-item">
-                    <input type="radio" name="section" onClick={() => { setSectionIndex(index) }} />
+                    <input type="radio" name="section" onClick={() => { setSectionIndex(index1) }} checked={index1 == sectionIndex} />
                     <p>Tên phần thi</p>
-                    <input placeholder="Nhập tên phần thi" type="text" value={section.sectionName} onInput={(e) => { setSectionName(e.target.value, index) }} />
+                    <input placeholder="Nhập tên phần thi" type="text" value={section.sectionName} onInput={(e) => { setSectionName(e.target.value, index1) }} />
                     <div className="list-questions-of-section">
-                      {section.questions.map((question, index) => (
-                        <div className="question-item">{question.contentText}
-                          {question.type == 3 ? <input/> : <Question questionType={question.type} contentJSON={[]}/>} 
-                        </div>
+                      {section.questionSections.map((questionSection, index2) => (
+                        <div className="question-item" onClick={() => { removeQuestionFromSection(index1, index2) }}>{questionSection.question.contentText}</div>
                       ))}
                     </div>
+                    <div className="delete-section" onClick={() => { deleteSection(index1) }}><i className="fas fa-trash"></i></div>
                   </div>
                 ))}
                 <button onClick={addSection}><i className="fas fa-plus"></i></button>

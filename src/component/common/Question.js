@@ -43,7 +43,7 @@ function Question({ contentJSON = [], questionType, setNewContentJson }) {
         <div className="question-item" key={index}>
           <input
             type="text"
-            value={item.key}
+            placeholder={item.key}
             onInput={(e) => {
               changeKey(e, index);
             }}

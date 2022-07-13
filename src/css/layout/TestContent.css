@@ -50,7 +50,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap:10px;
+    margin-top: 5px;
 }
 
 .section-item{
@@ -58,16 +58,38 @@
     background-color: aquamarine;
     border-radius: 4px;
     padding: 20px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.delete-section{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 30px;
+    height: 30px;
+    background-color: antiquewhite;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.delete-section:hover{
+    background-color: red;
 }
 
 .list-questions-of-section{
     background-color: beige;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: center;
     justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 0px;
 }
+
 
 .list-section button{
     width: 30px;
