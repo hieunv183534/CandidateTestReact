@@ -10,6 +10,7 @@ class TestAccountApi extends BaseApi {
     updateTestAccount(change){
         return BaseApiConfig.post(`${this.apiController}/updateTestAccount`, change);
     }
+    
 }
 
 export default new TestAccountApi();
