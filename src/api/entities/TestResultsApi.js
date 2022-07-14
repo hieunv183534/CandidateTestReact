@@ -8,11 +8,15 @@ class TestResultsApi extends BaseApi {
     }
   
     getTestResultById(testId){
-        return BaseApiConfig.get(`${this.apiController}byTestId?testId=${testId}`);
+        return BaseApiConfig.get(`${this.apiController}/byTestId?testId=${testId}`);
     }
     getTestResult(candidateId){
         return BaseApiConfig.get(`${this.apiController}?candidateId=${candidateId}`);
     }
+    postTestResult() {
+        return BaseApiConfig.get(`${this.apiController}`);
+    }
+    
 }
 
 export default new TestResultsApi();
