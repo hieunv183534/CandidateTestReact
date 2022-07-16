@@ -51,7 +51,7 @@ function Login() {
           </div>
           <div className="wrap-input100 validate-input" data-validate="Enter password">
             <span className="btn-show-pass">
-              <i className="zmdi zmdi-eye" />
+              
             </span>
             <input className="input100"
             type="Password"
