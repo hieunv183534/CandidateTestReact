@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 
-import LoginPage from './component/LoginPage';
+import Login from './component/Login.jsx';
 import AdminPage from './component/AdminPage';
 import HomeContent from './component/content/HomeContent'
 import AccountsContent from './component/content/AccountsContent'
@@ -16,13 +16,14 @@ import TestCandidateContent from './component/content/TestCandidateContent'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function App() {
   return (
     <>
       <Router>
         <div className="App">
           <Routes >
-            <Route exact path="/" element={<LoginPage />} />
+            <Route exact path="/" element={<Login />} />
             <Route path="/admin" element={<AdminPage />} >
               <Route exact path="" element={<HomeContent />} />
               <Route path="account" element={<AccountsContent />} />
