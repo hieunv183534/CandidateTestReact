@@ -1,7 +1,28 @@
 .header-table {
-  background-color: #ffff;
-  height: 60px;
+  background-color: #DBE2EF !important ;
+  height: 80px !important;
   display: flex;
   justify-content: flex-end;
-  padding: 0px 20px;
+  padding-top: 20px !important;
+
+}
+
+.btn-primary {
+  margin-left: 10px !important;
+  background-color: #112D4E !important;
+  
+}
+.dx-datagrid-headers{
+  background-color: #3F72AF !important;
+  color: #F9F7F7 !important;
+}
+.my-dropdown  {
+  background-color: #112D4E !important;
+  color: white !important;
+  border-radius: 4px !important;
+  width: 130px !important;
+}
+
+.dx-button-text {
+  color: #F9F7F7;
 }

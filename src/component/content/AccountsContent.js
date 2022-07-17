@@ -170,7 +170,7 @@ function AccountsContent() {
           }}
         />
         <Button
-          btnText={"Thêm tài khoản"}
+          btnText={"Thêm câu hỏi"}
           btnType={"btn-primary"}
           btnOnClick={addAccountOnClick}
         />
