@@ -31,30 +31,30 @@ function LoginPage() {
 
   return (
     <div className="login-form">
-      <div className="img-container">
-        <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t31.18172-8/15844793_1549444465073658_5405440182702780537_o.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=1iDJA4f5ktwAX_rJGLE&_nc_ht=scontent.fhan2-3.fna&oh=00_AT9fmaaUhk3Hh3dJOSYQb9F_vIkLMEbBedpFUPIYzdguHQ&oe=62C1A80E" alt="Avatar" class="avatar" />
-      </div>
+    
       <div className="login-container">
+        <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          <h3>Enter Username:</h3>
+        <label className="formFieldLabel">
           <input
             type="text"
             name="username"
             value={inputs.username || ""}
             onChange={handleChange}
+            placeholder="Admin"
           />
         </label>
-        <label>
-        <h3>Enter Password:</h3>
+        <label className="formFieldLabel">
           <input
             type="Password"
             name="password"
             value={inputs.password || ""}
             onChange={handleChange}
+            placeholder="Password"
           />
         </label>
-        <input type="submit" Login />
+        <div><input type="submit" value="Sign In"/></div>
+        
       </form>
       </div>
     </div>
