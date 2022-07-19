@@ -11,6 +11,7 @@ import { Form, Item } from "devextreme-react/form";
 import PopupConfirm from "../common/PopupConfirm.js";
 import { toast } from "react-toastify";
 import DropDown from "../common/Dropdown";
+import { TextBox } from 'devextreme-react/text-box';
 
 const columns = [
   "userName",
@@ -37,6 +38,10 @@ const filterUser = [
   },
 ];
 
+
+var _searchTerms = "";
+var _role = "";
+
 function AccountsContent() {
   const [reload, setReload] = useState(true);
   const [id, setId] = useState("");
@@ -60,13 +65,13 @@ function AccountsContent() {
     fetchData();
   }, [reload]);
 
-  const fetchData = async (searchTerms, role) => {
+  const fetchData = async () => {
     try {
       let rs = await AccountApi.getListAccount(
         0,
         100,
-        searchTerms || "",
-        role || ""
+        _searchTerms,
+        _role == null ? '': _role
       );
       setAccounts(rs.data.data.data);
     } catch (error) {
@@ -163,10 +168,19 @@ function AccountsContent() {
   return (
     <div className="table-account">
       <div className="header-table">
+        <TextBox
+          showClearButton={true}
+          placeholder="Tìm kiếm tài khoản"
+          onEnterKey={() => {
+            fetchData();
+          }}
+          onValueChange={(v) => { _searchTerms = v }}
+        />
         <DropDown
           actions={filterUser}
           onSelect={(value) => {
-            fetchData(null, value.id);
+            _role = value.id;
+            fetchData();
           }}
         />
         <Button

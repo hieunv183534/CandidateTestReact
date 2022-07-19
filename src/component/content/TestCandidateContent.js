@@ -31,6 +31,7 @@ function TestResultsContent() {
         setTestId(data.data.id);
         TestApi.getListCandidate(data.data.id).then(res => {
             setCandidates(res.data.data);
+            toast.success("Lấy thành công các danh sách ứng viên của bài thi "+ data.data.testCode)
             localStorage.setItem('candidates', JSON.stringify(res.data.data));
         }).catch(err => {
             console.log(err);

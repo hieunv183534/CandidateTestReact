@@ -17,12 +17,12 @@ button{
 }
 
 .btn-primary{
-    background-color: #EC5504;
-    color: #eee;
+    background-color: #40b7f3;
+    color: #fff;
 }
 
 .btn-primary:hover{
-    background-color: #FA6000;
+    background-color: #0ca1ec;
 }
 
 .btn-secondary{

@@ -15,7 +15,7 @@ function AdminPage(){
                 <Menu/>
             </div>
             <div className="left">
-                <Header userName={"Admin"}/>
+                <Header userName={JSON.parse(sessionStorage.getItem('info')).userName}/>
                 <Outlet />
             </div>
         </div> 

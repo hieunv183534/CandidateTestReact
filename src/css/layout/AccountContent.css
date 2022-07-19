@@ -4,7 +4,7 @@
   height: 60px;
   display: flex;
   justify-content: flex-end;
-  
+  gap: 10px;
 }
 .dx-datagrid-headers {
   background-color: #3F72AF;
@@ -14,8 +14,4 @@
   margin-left: 20px;
   margin-right: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-.btn-primary {
-  background-color: #9AD0EC !important;
-  color: #112D4E !important;
 }
