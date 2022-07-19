@@ -8,7 +8,7 @@ class TestApi extends BaseApi {
     }
   
     getListTest(count,index,searchTerm){
-        return BaseApiConfig.get(`${this.apiController}?count=${count}&index=${index}&searchTerm=${searchTerm}`);
+        return BaseApiConfig.get(`${this.apiController}?count=${count}&index=${index}&searchTerms=${searchTerm}`);
     }
 
     getListCandidate(testId){

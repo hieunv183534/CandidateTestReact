@@ -10,6 +10,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import PopupConfirm from '../common/PopupConfirm.js';
 import { toast } from 'react-toastify';
+import { TextBox } from 'devextreme-react/text-box';
+
+var _searchTerms = "";
 
 function TestsContent() {
   const [reload, setReload] = useState(true);
@@ -33,19 +36,22 @@ function TestsContent() {
   }
 
   useEffect(() => {
-    TestApi.getListTest(100, 0, "")
+    loadTests();
+    QuestionApi.getListQuestion(100, 0, "", "").then(res => {
+      setQuestions(res.data.data.data);
+    });
+  }, [reload]);
+
+  const loadTests = () => {
+    TestApi.getListTest(100, 0, _searchTerms)
       .then((res) => {
+        console.log(res.data.data.data);
         setTests(res.data.data.data);
       })
       .catch((err) => {
         console.error(err);
       });
-
-    QuestionApi.getListQuestion(100, 0, "", "").then(res => {
-      setQuestions(res.data.data.data);
-    });
-
-  }, [reload]);
+  }
 
 
   const [test, setTest] = useState(testEmpty);
@@ -206,6 +212,14 @@ function TestsContent() {
   return (
     <div className="table-account">
       <div className="header-table">
+        <TextBox
+          showClearButton={true}
+          placeholder="Tìm kiếm bài thi"
+          onEnterKey={() => {
+            loadTests();
+          }}
+          onValueChange={(v) => { _searchTerms = v }}
+        />
         <Button btnText={"Thêm bài kiểm tra"} btnType={"btn-primary"} btnOnClick={addTestOnClick} />
       </div>
       <Table rows={tests} columns={columns} onRowDblClick={testAction} />

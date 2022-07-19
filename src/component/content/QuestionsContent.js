@@ -12,9 +12,11 @@ import PopupConfirm from "../common/PopupConfirm.js";
 import { toast } from "react-toastify";
 import Dropdown from "../common/Dropdown.js";
 import Question from "../common/Question.js";
+import { TextBox } from 'devextreme-react/text-box';
 
 var type = '';
 var category = '';
+var _searchTerms = '';
 
 
 function QuestionsContent() {
@@ -39,7 +41,7 @@ function QuestionsContent() {
   const [questionType, setQuestionType] = useState(1);
 
   const loadQuestions = () => {
-    QuestionApi.getListQuestion(100, 0, type, category)
+    QuestionApi.getListQuestion(100, 0, type, category, _searchTerms)
       .then((res) => {
         res.data.data.data.forEach((q) => {
           q = completeQuestion(q);
@@ -203,6 +205,14 @@ function QuestionsContent() {
   return (
     <div className="table-account">
       <div className="header-table">
+        <TextBox
+          showClearButton={true}
+          placeholder="Tìm kiếm câu hỏi"
+          onEnterKey={() => {
+            loadQuestions();
+          }}
+          onValueChange={(v) => { _searchTerms = v }}
+        />
         <Dropdown actions={actions1} onSelect={dropdownOnSelect1} />
         <Dropdown actions={actions2} onSelect={dropdownOnSelect2} />
 

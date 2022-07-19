@@ -1,7 +1,17 @@
 .header-table {
+  padding-top: 13px !important;
   background-color: #ffff;
   height: 60px;
   display: flex;
   justify-content: flex-end;
-  padding: 0px 20px;
+  gap: 10px;
+}
+.dx-datagrid-headers {
+  background-color: #3F72AF;
+  color: #F9F7F7;
+}
+.dx-datagrid {
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
