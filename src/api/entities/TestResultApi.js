@@ -1,14 +1,15 @@
 import BaseApi from "../base/BaseApi.js"
 import BaseApiConfig from "../base/BaseApiConfig.js"
 
-class TestApi extends BaseApi {
+class TestResultApi extends BaseApi {
     constructor() {
         super();
-        this.apiController = "api/test";
+        this.apiController = "api/testresult";
     }
-  
-    getListTest(count,index,searchTerm){
-        return BaseApiConfig.get(`${this.apiController}?count=${count}&index=${index}&searchTerms=${searchTerm}`,{
+
+
+    getTestResult(testId, candidateId){
+        return BaseApiConfig.get(`${this.apiController}/byTestIdAndCandidateId?testId=${testId}&candidateId=${candidateId}`,{
             headers: {
                 "Content-Type": "application/json",
                 Authorization: sessionStorage.getItem("token"),
@@ -16,8 +17,8 @@ class TestApi extends BaseApi {
         });
     }
 
-    getListCandidate(testId){
-        return BaseApiConfig.get(`${this.apiController}/getCandidatesOfTest/${testId}`,{
+    chamThi(id, scores){
+        return BaseApiConfig.put(`${this.apiController}/${id}`, scores ,{
             headers: {
                 "Content-Type": "application/json",
                 Authorization: sessionStorage.getItem("token"),
@@ -26,4 +27,4 @@ class TestApi extends BaseApi {
     }
 }
 
-export default new TestApi();
+export default new TestResultApi();

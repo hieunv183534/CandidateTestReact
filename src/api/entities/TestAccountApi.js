@@ -8,7 +8,12 @@ class TestAccountApi extends BaseApi {
     }
 
     updateTestAccount(change){
-        return BaseApiConfig.post(`${this.apiController}/updateTestAccount`, change);
+        return BaseApiConfig.post(`${this.apiController}/updateTestAccount`, change,{
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: sessionStorage.getItem("token"),
+            }
+        });
     }
 }
 
